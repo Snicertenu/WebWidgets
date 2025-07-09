@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timezone Widget Embed</title>
+    <style>
+        /* Timezone Widget Styles */
+        .timezone-widget-embed {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .timezone-widget-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .timezone-widget-content {
+            padding: 25px;
+        }
+
+        .time-format-selector {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .time-format-selector label {
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .time-format-selector select {
+            padding: 8px 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .time-format-selector select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .timezone-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .timezone-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .timezone-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timezone-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timezone-time {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 5px;
+        }
+
+        .timezone-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 480px) {
+            .timezone-widget-embed {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .timezone-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-format-selector {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timezone-widget-embed">
+        <h2 class="timezone-widget-header">Multi-Time Zone Clock</h2>
+        <div class="timezone-widget-content">
+            <div class="time-format-selector">
+                <label for="time-format">Time Format:</label>
+                <select id="time-format">
+                    <option value="24hr">24-Hour</option>
+                    <option value="12hr">12-Hour</option>
+                </select>
+            </div>
+            <div class="timezone-grid">
+                <div class="timezone-item">
+                    <div class="timezone-label">EST</div>
+                    <div class="timezone-time" id="est-time">--:--:--</div>
+                    <div class="timezone-date" id="est-date">--</div>
+                </div>
+                <div class="timezone-item">
+                    <div class="timezone-label">CST</div>
+                    <div class="timezone-time" id="cst-time">--:--:--</div>
+                    <div class="timezone-date" id="cst-date">--</div>
+                </div>
+                <div class="timezone-item">
+                    <div class="timezone-label">MST</div>
+                    <div class="timezone-time" id="mst-time">--:--:--</div>
+                    <div class="timezone-date" id="mst-date">--</div>
+                </div>
+                <div class="timezone-item">
+                    <div class="timezone-label">PST</div>
+                    <div class="timezone-time" id="pst-time">--:--:--</div>
+                    <div class="timezone-date" id="pst-date">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TimezoneWidgetEmbed {
+            constructor() {
+                this.timezones = {
+                    'EST': 'America/New_York',
+                    'CST': 'America/Chicago', 
+                    'MST': 'America/Denver',
+                    'PST': 'America/Los_Angeles'
+                };
+                this.timeFormat = '24hr';
+                this.init();
+            }
+
+            init() {
+                this.addTimeFormatSelector();
+                this.updateTime();
+                setInterval(() => this.updateTime(), 1000);
+            }
+
+            addTimeFormatSelector() {
+                document.getElementById('time-format').addEventListener('change', (e) => {
+                    this.timeFormat = e.target.value;
+                    this.updateTime();
+                });
+            }
+
+            updateTime() {
+                const now = new Date();
+                
+                Object.entries(this.timezones).forEach(([abbreviation, timezone]) => {
+                    const timeElement = document.getElementById(`${abbreviation.toLowerCase()}-time`);
+                    const dateElement = document.getElementById(`${abbreviation.toLowerCase()}-date`);
+                    
+                    if (timeElement && dateElement) {
+                        const timeInZone = this.getTimeInTimezone(now, timezone);
+                        const timeString = this.formatTime(timeInZone);
+                        
+                        const dateString = timeInZone.toLocaleDateString('en-US', {
+                            weekday: 'short',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                        
+                        timeElement.textContent = timeString;
+                        dateElement.textContent = dateString;
+                    }
+                });
+            }
+
+            formatTime(date) {
+                if (this.timeFormat === '12hr') {
+                    return date.toLocaleTimeString('en-US', {
+                        hour12: true,
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                } else {
+                    return date.toLocaleTimeString('en-US', {
+                        hour12: false,
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                }
+            }
+
+            getTimeInTimezone(date, timezone) {
+                try {
+                    return new Date(date.toLocaleString('en-US', { timeZone: timezone }));
+                } catch (error) {
+                    return this.manualTimezoneConversion(date, timezone);
+                }
+            }
+
+            manualTimezoneConversion(date, timezone) {
+                const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+                
+                const offsets = {
+                    'America/New_York': -5,
+                    'America/Chicago': -6,
+                    'America/Denver': -7,
+                    'America/Los_Angeles': -8
+                };
+                
+                const isDST = this.isDaylightSavingTime(date, timezone);
+                const offset = offsets[timezone] + (isDST ? 1 : 0);
+                
+                return new Date(utc + (offset * 3600000));
+            }
+
+            isDaylightSavingTime(date, timezone) {
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const dayOfWeek = date.getDay();
+                
+                const marchStart = new Date(year, 2, 1);
+                const firstSundayInMarch = new Date(year, 2, 1 + (7 - marchStart.getDay()) % 7);
+                const secondSundayInMarch = new Date(firstSundayInMarch.getTime() + 7 * 24 * 60 * 60 * 1000);
+                
+                const novemberStart = new Date(year, 10, 1);
+                const firstSundayInNovember = new Date(year, 10, 1 + (7 - novemberStart.getDay()) % 7);
+                
+                return date >= secondSundayInMarch && date < firstSundayInNovember;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new TimezoneWidgetEmbed();
+        });
+    </script>
+</body>
+</html> 

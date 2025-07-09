@@ -1,0 +1,676 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.widget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.widget-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.widget-container h2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.widget {
+    padding: 0;
+}
+
+.widget-content {
+    padding: 25px;
+}
+
+/* Weather Widget Styles */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-selector {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.service-selector label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.service-selector select {
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.service-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.location-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.location-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.location-input input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.location-input button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.location-input button:hover {
+    transform: translateY(-2px);
+}
+
+.weather-display {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #666;
+}
+
+.weather-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.weather-temp {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.weather-icon {
+    font-size: 2.5rem;
+}
+
+.weather-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.weather-location {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.weather-service {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.weather-detail {
+    text-align: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.weather-detail-label {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.weather-detail-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Timezone Widget Styles */
+.time-format-selector {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.time-format-selector label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.time-format-selector select {
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.time-format-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.timezone-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.timezone-item {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.timezone-item:hover {
+    transform: scale(1.05);
+}
+
+.timezone-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.timezone-time {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 5px;
+}
+
+.timezone-date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Loading and Error States */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e1e5e9;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .widget-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .location-input {
+        flex-direction: column;
+    }
+    
+    .timezone-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .weather-main {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .weather-temp {
+        font-size: 2.5rem;
+    }
+}
+
+/* Timeline Widget Styles */
+.timeline-container {
+    width: 100%;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.timeline-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.timeline-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.timeline-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.timeline-btn:hover {
+    transform: translateY(-2px);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.timeline-item.completed {
+    border-left: 4px solid #28a745;
+}
+
+.timeline-item.active {
+    border-left: 4px solid #ffc107;
+}
+
+.timeline-item.pending {
+    border-left: 4px solid #6c757d;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -37px;
+    top: 20px;
+    z-index: 2;
+}
+
+.timeline-icon {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 3px solid #667eea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.timeline-item.completed .timeline-icon {
+    border-color: #28a745;
+    background: #28a745;
+    color: white;
+}
+
+.timeline-item.active .timeline-icon {
+    border-color: #ffc107;
+    background: #ffc107;
+    color: white;
+}
+
+.timeline-item.pending .timeline-icon {
+    border-color: #6c757d;
+    background: #6c757d;
+    color: white;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 14px;
+    top: 30px;
+    width: 2px;
+    height: calc(100% + 30px);
+    background: #e9ecef;
+}
+
+.timeline-item:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-content {
+    padding: 20px;
+}
+
+.timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.timeline-header .timeline-date {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    min-width: 60px;
+}
+
+.timeline-header .timeline-title {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 15px;
+}
+
+.timeline-header .timeline-status {
+    margin-right: 15px;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.active {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.pending {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+.timeline-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.timeline-toggle .toggle-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item.expanded .timeline-toggle .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.timeline-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.timeline-details {
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+    animation: slideDown 0.3s ease;
+}
+
+.timeline-details p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.timeline-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-btn {
+    background: #007bff;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .timeline-header .timeline-title {
+        margin: 0;
+        order: 1;
+    }
+    
+    .timeline-header .timeline-date {
+        order: 2;
+    }
+    
+    .timeline-header .timeline-status {
+        order: 3;
+        margin-right: 0;
+    }
+    
+    .timeline-header .timeline-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        order: 4;
+    }
+    
+    .timeline {
+        padding-left: 20px;
+    }
+    
+    .timeline-marker {
+        left: -27px;
+    }
+    
+    .timeline-controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .timeline-btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+} 

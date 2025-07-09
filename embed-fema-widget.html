@@ -1,0 +1,260 @@
+<!-- FEMA Disaster Declarations Widget (Embeddable) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEMA Disaster Declarations Widget</title>
+  <style>
+    .fema-widget-container {
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 24px 18px 18px 18px;
+      font-family: inherit;
+    }
+    .fema-widget-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .fema-widget-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fema-widget-controls input,
+    .fema-widget-controls select {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .fema-widget-results {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      background: #fafbfc;
+      padding: 0;
+    }
+    .fema-widget-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid #ececec;
+      padding: 12px 10px;
+      font-size: 1rem;
+    }
+    .fema-widget-row:last-child {
+      border-bottom: none;
+    }
+    .fema-widget-col {
+      flex: 1 1 120px;
+      min-width: 100px;
+      padding: 2px 8px;
+      word-break: break-word;
+    }
+    .fema-widget-col-title {
+      font-weight: 600;
+      color: #1a237e;
+    }
+    .fema-widget-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .fema-widget-pagination button {
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+      background: #f5f5f5;
+      color: #222;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .fema-widget-pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    @media (max-width: 600px) {
+      .fema-widget-row, .fema-widget-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .fema-widget-col {
+        min-width: 0;
+        width: 100%;
+        padding: 2px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="fema-widget-container" id="fema-widget">
+  <div class="fema-widget-header">US Disaster Declarations</div>
+  <div class="fema-widget-controls">
+    <input type="text" id="fema-search" placeholder="Search disasters..." />
+    <select id="fema-state"><option value="">All States</option></select>
+    <select id="fema-type"><option value="">All Types</option></select>
+    <select id="fema-sort">
+      <option value="desc">Newest First</option>
+      <option value="asc">Oldest First</option>
+    </select>
+  </div>
+  <div class="fema-widget-results" id="fema-results"></div>
+  <div class="fema-widget-pagination" id="fema-pagination"></div>
+</div>
+<script>
+(function() {
+  const API_URL = 'https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries';
+  const PAGE_SIZE = 10;
+  let allData = [];
+  let filteredData = [];
+  let currentPage = 1;
+  let states = new Set();
+  let types = new Set();
+
+  const searchInput = document.getElementById('fema-search');
+  const stateSelect = document.getElementById('fema-state');
+  const typeSelect = document.getElementById('fema-type');
+  const sortSelect = document.getElementById('fema-sort');
+  const resultsDiv = document.getElementById('fema-results');
+  const paginationDiv = document.getElementById('fema-pagination');
+
+  async function fetchData() {
+    let page = 1;
+    let more = true;
+    let data = [];
+    while (more && page <= 10) { // Limit to 10 pages (100 results) for demo/performance
+      const url = `${API_URL}?$orderby=declarationDate desc&$top=100&$skip=${(page-1)*100}`;
+      const res = await fetch(url);
+      const json = await res.json();
+      if (json.DisasterDeclarationsSummaries && json.DisasterDeclarationsSummaries.length > 0) {
+        data = data.concat(json.DisasterDeclarationsSummaries);
+        more = json.DisasterDeclarationsSummaries.length === 100;
+        page++;
+      } else {
+        more = false;
+      }
+    }
+    return data;
+  }
+
+  function populateFilters(data) {
+    data.forEach(item => {
+      if (item.state) states.add(item.state);
+      if (item.incidentType) types.add(item.incidentType);
+    });
+    Array.from(states).sort().forEach(state => {
+      const opt = document.createElement('option');
+      opt.value = state;
+      opt.textContent = state;
+      stateSelect.appendChild(opt);
+    });
+    Array.from(types).sort().forEach(type => {
+      const opt = document.createElement('option');
+      opt.value = type;
+      opt.textContent = type;
+      typeSelect.appendChild(opt);
+    });
+  }
+
+  function filterAndSort() {
+    const search = searchInput.value.trim().toLowerCase();
+    const state = stateSelect.value;
+    const type = typeSelect.value;
+    const sort = sortSelect.value;
+    filteredData = allData.filter(item => {
+      let match = true;
+      if (search) {
+        match = (
+          (item.declarationTitle && item.declarationTitle.toLowerCase().includes(search)) ||
+          (item.incidentType && item.incidentType.toLowerCase().includes(search)) ||
+          (item.state && item.state.toLowerCase().includes(search))
+        );
+      }
+      if (state && item.state !== state) match = false;
+      if (type && item.incidentType !== type) match = false;
+      return match;
+    });
+    filteredData.sort((a, b) => {
+      const dateA = new Date(a.declarationDate);
+      const dateB = new Date(b.declarationDate);
+      return sort === 'desc' ? dateB - dateA : dateA - dateB;
+    });
+    currentPage = 1;
+    renderResults();
+    renderPagination();
+  }
+
+  function renderResults() {
+    resultsDiv.innerHTML = '';
+    if (filteredData.length === 0) {
+      resultsDiv.innerHTML = '<div style="padding:20px; color:#888;">No results found.</div>';
+      return;
+    }
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    const pageData = filteredData.slice(start, end);
+    pageData.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'fema-widget-row';
+      row.innerHTML = `
+        <div class="fema-widget-col"><strong>#${item.disasterNumber}</strong></div>
+        <div class="fema-widget-col">${item.state || ''}</div>
+        <div class="fema-widget-col">${item.incidentType || ''}</div>
+        <div class="fema-widget-col fema-widget-col-title">${item.declarationTitle || ''}</div>
+        <div class="fema-widget-col">${item.declarationDate ? new Date(item.declarationDate).toLocaleDateString() : ''}</div>
+      `;
+      resultsDiv.appendChild(row);
+    });
+  }
+
+  function renderPagination() {
+    paginationDiv.innerHTML = '';
+    const totalPages = Math.ceil(filteredData.length / PAGE_SIZE);
+    if (totalPages <= 1) return;
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = 'Prev';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.onclick = () => { currentPage--; renderResults(); renderPagination(); };
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Next';
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.onclick = () => { currentPage++; renderResults(); renderPagination(); };
+    const pageInfo = document.createElement('span');
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    paginationDiv.appendChild(prevBtn);
+    paginationDiv.appendChild(pageInfo);
+    paginationDiv.appendChild(nextBtn);
+  }
+
+  // Event listeners
+  searchInput.addEventListener('input', filterAndSort);
+  stateSelect.addEventListener('change', filterAndSort);
+  typeSelect.addEventListener('change', filterAndSort);
+  sortSelect.addEventListener('change', filterAndSort);
+
+  // Init
+  resultsDiv.innerHTML = '<div style="padding:20px; color:#888;">Loading...</div>';
+  fetchData().then(data => {
+    allData = data;
+    populateFilters(allData);
+    filterAndSort();
+  }).catch(() => {
+    resultsDiv.innerHTML = '<div style="padding:20px; color:#c00;">Failed to load data from FEMA API.</div>';
+  });
+})();
+</script>
+</body>
+</html> 

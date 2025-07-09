@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Widget Embed</title>
+    <style>
+        /* Timeline Widget Styles */
+        .timeline-widget-embed {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .timeline-widget-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .timeline-widget-content {
+            padding: 25px;
+        }
+
+        .timeline-container {
+            width: 100%;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .timeline-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .timeline-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .timeline-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item.completed {
+            border-left: 4px solid #28a745;
+        }
+
+        .timeline-item.active {
+            border-left: 4px solid #ffc107;
+        }
+
+        .timeline-item.pending {
+            border-left: 4px solid #6c757d;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -37px;
+            top: 20px;
+            z-index: 2;
+        }
+
+        .timeline-icon {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item.completed .timeline-icon {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .timeline-item.active .timeline-icon {
+            border-color: #ffc107;
+            background: #ffc107;
+            color: white;
+        }
+
+        .timeline-item.pending .timeline-icon {
+            border-color: #6c757d;
+            background: #6c757d;
+            color: white;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 14px;
+            top: 30px;
+            width: 2px;
+            height: calc(100% + 30px);
+            background: #e9ecef;
+        }
+
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+
+        .timeline-content {
+            padding: 20px;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 0;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .timeline-header .timeline-date {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            min-width: 60px;
+        }
+
+        .timeline-header .timeline-title {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0 15px;
+        }
+
+        .timeline-header .timeline-status {
+            margin-right: 15px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.active {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.pending {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .timeline-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-toggle .toggle-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item.expanded .timeline-toggle .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .timeline-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .timeline-details {
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+            animation: slideDown 0.3s ease;
+        }
+
+        .timeline-details p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .timeline-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .edit-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #0056b3;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-widget-embed {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .timeline-header .timeline-title {
+                margin: 0;
+                order: 1;
+            }
+            
+            .timeline-header .timeline-date {
+                order: 2;
+            }
+            
+            .timeline-header .timeline-status {
+                order: 3;
+                margin-right: 0;
+            }
+            
+            .timeline-header .timeline-toggle {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                order: 4;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-marker {
+                left: -27px;
+            }
+            
+            .timeline-controls {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .timeline-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-widget-embed">
+        <h2 class="timeline-widget-header">Vertical Timeline</h2>
+        <div class="timeline-widget-content">
+            <div class="timeline-container">
+                <div class="timeline-header">
+                    <h3>Project Timeline</h3>
+                    <div class="timeline-controls">
+                        <button id="expand-all" class="timeline-btn">Expand All</button>
+                        <button id="collapse-all" class="timeline-btn">Collapse All</button>
+                    </div>
+                </div>
+                <div class="timeline" id="timeline">
+                    <!-- Timeline items will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TimelineWidgetEmbed {
+            constructor() {
+                this.timelineData = [
+                    {
+                        id: 1,
+                        date: '2024',
+                        title: 'Project Launch',
+                        description: 'Initial project setup and development began. Core features were planned and implemented.',
+                        details: 'This phase included setting up the development environment, creating the basic project structure, and implementing the core functionality. The team worked on establishing coding standards and project guidelines.',
+                        status: 'completed',
+                        icon: '🚀'
+                    },
+                    {
+                        id: 2,
+                        date: '2024',
+                        title: 'Development Phase',
+                        description: 'Active development of widgets and features. Multiple iterations and improvements.',
+                        details: 'During this phase, we developed the weather widget, timezone widget, and timeline widget. Each widget went through multiple iterations with user feedback and testing. Performance optimizations were implemented.',
+                        status: 'completed',
+                        icon: '⚙️'
+                    },
+                    {
+                        id: 3,
+                        date: '2024',
+                        title: 'Testing & QA',
+                        description: 'Comprehensive testing across different browsers and devices.',
+                        details: 'Quality assurance testing was conducted across multiple browsers (Chrome, Firefox, Safari, Edge) and devices (desktop, tablet, mobile). Bug fixes and performance improvements were made based on test results.',
+                        status: 'active',
+                        icon: '🧪'
+                    },
+                    {
+                        id: 4,
+                        date: '2024',
+                        title: 'Deployment',
+                        description: 'Production deployment and monitoring setup.',
+                        details: 'The application was deployed to production servers with proper monitoring and logging. Performance metrics and error tracking were implemented to ensure smooth operation.',
+                        status: 'pending',
+                        icon: '🌐'
+                    },
+                    {
+                        id: 5,
+                        date: '2024',
+                        title: 'Future Enhancements',
+                        description: 'Planned features and improvements for future releases.',
+                        details: 'Future plans include adding more widgets, improving performance, enhancing the user interface, and adding new features based on user feedback and requirements.',
+                        status: 'pending',
+                        icon: '🔮'
+                    }
+                ];
+                this.init();
+            }
+
+            init() {
+                this.createTimeline();
+                this.addEventListeners();
+            }
+
+            createTimeline() {
+                const timeline = document.getElementById('timeline');
+                timeline.innerHTML = this.timelineData.map((item, index) => this.createTimelineItem(item, index)).join('');
+            }
+
+            createTimelineItem(item, index) {
+                return `
+                    <div class="timeline-item ${item.status}" data-id="${item.id}">
+                        <div class="timeline-marker">
+                            <div class="timeline-icon">${item.icon}</div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header" onclick="timelineWidgetEmbed.toggleItem(${item.id})">
+                                <div class="timeline-date">${item.date}</div>
+                                <div class="timeline-title">${item.title}</div>
+                                <div class="timeline-status">
+                                    <span class="status-badge ${item.status}">${this.getStatusText(item.status)}</span>
+                                </div>
+                                <div class="timeline-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </div>
+                            <div class="timeline-description">${item.description}</div>
+                            <div class="timeline-details" style="display: none;">
+                                <p>${item.details}</p>
+                                <div class="timeline-actions">
+                                    <button class="action-btn edit-btn">Edit</button>
+                                    <button class="action-btn delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getStatusText(status) {
+                const statusMap = {
+                    'completed': 'Completed',
+                    'active': 'In Progress',
+                    'pending': 'Pending'
+                };
+                return statusMap[status] || status;
+            }
+
+            addEventListeners() {
+                document.getElementById('expand-all').addEventListener('click', () => {
+                    this.expandAll();
+                });
+
+                document.getElementById('collapse-all').addEventListener('click', () => {
+                    this.collapseAll();
+                });
+            }
+
+            toggleItem(itemId) {
+                const item = document.querySelector(`[data-id="${itemId}"]`);
+                const details = item.querySelector('.timeline-details');
+                const toggleIcon = item.querySelector('.toggle-icon');
+                
+                if (details.style.display === 'none') {
+                    details.style.display = 'block';
+                    toggleIcon.textContent = '−';
+                    item.classList.add('expanded');
+                } else {
+                    details.style.display = 'none';
+                    toggleIcon.textContent = '+';
+                    item.classList.remove('expanded');
+                }
+            }
+
+            expandAll() {
+                const items = document.querySelectorAll('.timeline-item');
+                items.forEach(item => {
+                    const details = item.querySelector('.timeline-details');
+                    const toggleIcon = item.querySelector('.toggle-icon');
+                    details.style.display = 'block';
+                    toggleIcon.textContent = '−';
+                    item.classList.add('expanded');
+                });
+            }
+
+            collapseAll() {
+                const items = document.querySelectorAll('.timeline-item');
+                items.forEach(item => {
+                    const details = item.querySelector('.timeline-details');
+                    const toggleIcon = item.querySelector('.toggle-icon');
+                    details.style.display = 'none';
+                    toggleIcon.textContent = '+';
+                    item.classList.remove('expanded');
+                });
+            }
+        }
+
+        let timelineWidgetEmbed;
+        document.addEventListener('DOMContentLoaded', () => {
+            timelineWidgetEmbed = new TimelineWidgetEmbed();
+        });
+    </script>
+</body>
+</html> 
