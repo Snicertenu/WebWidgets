@@ -1,0 +1,25 @@
+<!-- Nutrition Calculator Core - Embed Version -->
+<div class="nutrition-calculator-container">
+  <div class="nutrition-calculator" data-widget="nutrition-calculator">
+    <h3>Nutrition Calculator</h3>
+    <div class="input-group">
+      <label for="food-input">Food Item:</label>
+      <input type="text" id="food-input" placeholder="Enter food item...">
+      <button id="calculate-btn">Calculate</button>
+    </div>
+    <div class="results" id="nutrition-results"></div>
+  </div>
+</div>
+
+<script>
+// Embed-specific initialization
+(function() {
+  const calculatorContainer = document.querySelector('[data-widget="nutrition-calculator"]');
+  if (calculatorContainer) {
+    new NutritionCalculator(calculatorContainer, {
+      apiKey: '',
+      units: 'metric'
+    });
+  }
+})();
+</script>
