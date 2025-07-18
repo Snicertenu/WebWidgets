@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -36,3 +37,10 @@ console.log('Nutrition Calculator Webflow implementation');
 // Added comprehensive tests for Calendar Widget Core
 console.log('Calendar Widget Core implementation');
 >>>>>>> task/1752797361884-calendar-widget-core
+=======
+// Task: Holiday Database
+// Description: Implement holiday database with country-specific holidays and cultural events
+
+// Added comprehensive tests for Holiday Database
+console.log('Holiday Database implementation');
+>>>>>>> task/1752797361900-holiday-database
