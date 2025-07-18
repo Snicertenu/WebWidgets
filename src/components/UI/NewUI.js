@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Core
 // Description: Create video widget core with iframe/embed support and responsive container
 
@@ -28,3 +29,10 @@ console.log('Calendar Site Version implementation');
 // Designed UI/UX elements for Music Player Site Version
 console.log('Music Player Site Version implementation');
 >>>>>>> task/1752797361991-music-player-site-version
+=======
+// Task: Widget Examples
+// Description: Add usage examples and demos for all widget types
+
+// Designed UI/UX elements for Widget Examples
+console.log('Widget Examples implementation');
+>>>>>>> task/1752797362054-widget-examples
