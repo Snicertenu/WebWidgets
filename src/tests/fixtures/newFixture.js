@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -68,3 +69,10 @@ console.log('Spotify Integration implementation');
 // Added comprehensive tests for Music Player Webflow
 console.log('Music Player Webflow implementation');
 >>>>>>> task/1752797362010-music-player-webflow
+=======
+// Task: Webflow Integration Guides
+// Description: Create Webflow integration guides with step-by-step instructions
+
+// Added comprehensive tests for Webflow Integration Guides
+console.log('Webflow Integration Guides implementation');
+>>>>>>> task/1752797362043-webflow-integration-guides
