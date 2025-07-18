@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Test Repository Fix
 // Description: Testing that files are created in the correct repository
 
@@ -28,3 +29,10 @@ console.log('Diet Recommendations implementation');
 // Built API functionality for Calendar Webflow
 console.log('Calendar Webflow implementation');
 >>>>>>> task/1752797361943-calendar-webflow
+=======
+// Task: Music Player Core
+// Description: Create music player core with audio controls, playlist management, and song info
+
+// Built API functionality for Music Player Core
+console.log('Music Player Core implementation');
+>>>>>>> task/1752797361952-music-player-core
