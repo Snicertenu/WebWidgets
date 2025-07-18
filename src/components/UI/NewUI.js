@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Core
 // Description: Create video widget core with iframe/embed support and responsive container
 
@@ -60,3 +61,10 @@ console.log('Integration Tests implementation');
 // Designed UI/UX elements for Performance Optimization
 console.log('Performance Optimization implementation');
 >>>>>>> task/1752797362127-performance-optimization
+=======
+// Task: Widget Configuration
+// Description: Add widget configuration examples and customization options
+
+// Designed UI/UX elements for Widget Configuration
+console.log('Widget Configuration implementation');
+>>>>>>> task/1752797362175-widget-configuration
