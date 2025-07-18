@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -52,3 +53,10 @@ console.log('Holiday Database implementation');
 // Added comprehensive tests for Calendar Interface
 console.log('Calendar Interface implementation');
 >>>>>>> task/1752797361917-calendar-interface
+=======
+// Task: Spotify Integration
+// Description: Integrate with Spotify Web Playback SDK for music streaming and control
+
+// Added comprehensive tests for Spotify Integration
+console.log('Spotify Integration implementation');
+>>>>>>> task/1752797361961-spotify-integration
