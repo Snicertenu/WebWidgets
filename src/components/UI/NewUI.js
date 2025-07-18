@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Core
 // Description: Create video widget core with iframe/embed support and responsive container
 
@@ -44,3 +45,10 @@ console.log('Widget Examples implementation');
 // Designed UI/UX elements for Troubleshooting Guides
 console.log('Troubleshooting Guides implementation');
 >>>>>>> task/1752797362068-troubleshooting-guides
+=======
+// Task: Integration Tests
+// Description: Create integration tests for API connections and cross-widget compatibility
+
+// Designed UI/UX elements for Integration Tests
+console.log('Integration Tests implementation');
+>>>>>>> task/1752797362091-integration-tests
