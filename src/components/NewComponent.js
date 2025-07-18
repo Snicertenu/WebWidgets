@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Site Version
 // Description: Build site-specific video widget version with custom player styling
 =======
@@ -21,12 +22,17 @@
 // Task: Calendar API Integration
 // Description: Integrate with calendar APIs (Google Calendar, Outlook) for event sync
 >>>>>>> task/1752797361892-calendar-api-integration
+=======
+// Task: Calendar Event Management
+// Description: Add event management, display functionality, and calendar controls
+>>>>>>> task/1752797361908-calendar-event-management
 
 import React from 'react';
 
 const NewComponent = () => {
   return (
     <div className="newcomponent">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -49,6 +55,10 @@ const NewComponent = () => {
       <h2>Calendar API Integration</h2>
       <p>Integrate with calendar APIs (Google Calendar, Outlook) for event sync</p>
 >>>>>>> task/1752797361892-calendar-api-integration
+=======
+      <h2>Calendar Event Management</h2>
+      <p>Add event management, display functionality, and calendar controls</p>
+>>>>>>> task/1752797361908-calendar-event-management
     </div>
   );
 };
