@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 -- Task: News Ticker Webflow
 
 -- Set up database structure for News Ticker Webflow
@@ -20,6 +21,11 @@
 
 -- Set up database structure for Widget Documentation
 >>>>>>> task/1752797362020-widget-documentation
+=======
+-- Task: Add Unit Tests
+
+-- Set up database structure for Add Unit Tests
+>>>>>>> task/1752797961620-add-unit-tests
 CREATE TABLE IF NOT EXISTS newmigration (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
