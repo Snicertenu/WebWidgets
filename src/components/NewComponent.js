@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Site Version
 // Description: Build site-specific video widget version with custom player styling
 =======
@@ -26,12 +27,17 @@
 // Task: Calendar Event Management
 // Description: Add event management, display functionality, and calendar controls
 >>>>>>> task/1752797361908-calendar-event-management
+=======
+// Task: Accessibility Compliance
+// Description: Validate accessibility compliance for all widgets and interfaces
+>>>>>>> task/1752797362115-accessibility-compliance
 
 import React from 'react';
 
 const NewComponent = () => {
   return (
     <div className="newcomponent">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -59,6 +65,10 @@ const NewComponent = () => {
       <h2>Calendar Event Management</h2>
       <p>Add event management, display functionality, and calendar controls</p>
 >>>>>>> task/1752797361908-calendar-event-management
+=======
+      <h2>Accessibility Compliance</h2>
+      <p>Validate accessibility compliance for all widgets and interfaces</p>
+>>>>>>> task/1752797362115-accessibility-compliance
     </div>
   );
 };
