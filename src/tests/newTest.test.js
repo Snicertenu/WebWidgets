@@ -11,6 +11,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -100,3 +101,10 @@ console.log('Main Index Update implementation');
 // Added comprehensive tests for README Update
 console.log('README Update implementation');
 >>>>>>> task/1752797362162-readme-update
+=======
+// Task: Widget Comparison
+// Description: Create widget comparison documentation showing features and use cases
+
+// Added comprehensive tests for Widget Comparison
+console.log('Widget Comparison implementation');
+>>>>>>> task/1752797362187-widget-comparison
