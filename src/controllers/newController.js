@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Test Repository Fix
 // Description: Testing that files are created in the correct repository
 
@@ -36,3 +37,10 @@ console.log('Calendar Webflow implementation');
 // Built API functionality for Music Player Core
 console.log('Music Player Core implementation');
 >>>>>>> task/1752797361952-music-player-core
+=======
+// Task: YouTube Music Integration
+// Description: Integrate with YouTube Music API for music streaming and playlist access
+
+// Built API functionality for YouTube Music Integration
+console.log('YouTube Music Integration implementation');
+>>>>>>> task/1752797361971-youtube-music-integration
