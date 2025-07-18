@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Test Repository Fix
 // Description: Testing that files are created in the correct repository
 
@@ -44,3 +45,10 @@ console.log('Music Player Core implementation');
 // Built API functionality for YouTube Music Integration
 console.log('YouTube Music Integration implementation');
 >>>>>>> task/1752797361971-youtube-music-integration
+=======
+// Task: Cross-Browser Testing
+// Description: Test cross-browser compatibility for all widgets and features
+
+// Built API functionality for Cross-Browser Testing
+console.log('Cross-Browser Testing implementation');
+>>>>>>> task/1752797362102-cross-browser-testing
