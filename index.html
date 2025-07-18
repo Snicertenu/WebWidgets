@@ -5,16 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Widget Testing Page</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="news-ticker-styling.css">
+    <link rel="stylesheet" href="video-widget-styling.css">
+    <link rel="stylesheet" href="nutrition-calculator-styling.css">
+    <link rel="stylesheet" href="calendar-widget-styling.css">
+    <link rel="stylesheet" href="music-player-styling.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Widget Testing Dashboard</h1>
-            <p>A simple page for testing various web widgets</p>
+            <p>A comprehensive page for testing all web widgets</p>
         </header>
         
         <main class="widget-grid">
+            <!-- News Ticker Widget -->
+            <div class="widget-container">
+                <h2>News Ticker</h2>
+                <div id="news-ticker-widget" class="widget">
+                    <div class="widget-content">
+                        <div class="news-ticker" data-widget="news-ticker">
+                            <div class="ticker-content">
+                                <span class="ticker-item">Loading news...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Widget -->
+            <div class="widget-container">
+                <h2>Video Player</h2>
+                <div id="video-widget" class="widget">
+                    <div class="widget-content">
+                        <div class="video-widget-container">
+                            <div class="video-controls">
+                                <input type="text" id="video-url" placeholder="Enter YouTube, Vimeo, or video URL">
+                                <button id="load-video-btn">Load Video</button>
+                            </div>
+                            <div id="video-player" class="video-player">
+                                <p>Enter a video URL to load the player</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nutrition Calculator Widget -->
+            <div class="widget-container">
+                <h2>Nutrition Calculator</h2>
+                <div id="nutrition-calculator-widget" class="widget">
+                    <div class="widget-content">
+                        <div class="nutrition-calculator">
+                            <h3>Nutrition Calculator</h3>
+                            <div class="input-group">
+                                <label for="food-input">Food Item:</label>
+                                <input type="text" id="food-input" placeholder="Enter food item...">
+                                <button id="calculate-btn">Calculate</button>
+                            </div>
+                            <div class="results" id="nutrition-results"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Widget -->
+            <div class="widget-container">
+                <h2>Calendar Widget</h2>
+                <div id="calendar-widget" class="widget">
+                    <div class="widget-content">
+                        <div class="calendar-container">
+                            <!-- Calendar interface will be created by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Player Widget -->
+            <div class="widget-container">
+                <h2>Music Player</h2>
+                <div id="music-player-widget" class="widget">
+                    <div class="widget-content">
+                        <div class="music-player">
+                            <!-- Music player interface will be created by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Original Widgets -->
             <div class="widget-container">
                 <h2>Weather Widget</h2>
                 <div id="weather-widget" class="widget">
@@ -78,13 +158,86 @@
         </main>
     </div>
 
+    <!-- Original Widget Scripts -->
     <script src="weather-widget.js"></script>
     <script src="timezone-widget.js"></script>
     <script src="timeline-widget.js"></script>
     <script src="main.js"></script>
     <script src="fema-widget.js"></script>
+    
+    <!-- New Widget Scripts -->
+    <script src="news-ticker-core.js"></script>
+    <script src="video-widget-core.js"></script>
+    <script src="nutrition-calculator-core.js"></script>
+    <script src="calendar-widget-core.js"></script>
+    <script src="music-player-core.js"></script>
+    
     <script>
-      initFemaWidget('fema-widget');
+        // Initialize original widgets
+        initFemaWidget('fema-widget');
+        
+        // Initialize new widgets
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize News Ticker
+            const newsTickerContainer = document.querySelector('#news-ticker-widget .news-ticker');
+            if (newsTickerContainer) {
+                new NewsTicker(newsTickerContainer, {
+                    speed: 50,
+                    pauseOnHover: true
+                });
+            }
+            
+            // Initialize Video Widget
+            const videoContainer = document.querySelector('#video-player');
+            const loadVideoBtn = document.querySelector('#load-video-btn');
+            const videoUrlInput = document.querySelector('#video-url');
+            
+            if (videoContainer && loadVideoBtn && videoUrlInput) {
+                const videoWidget = new VideoWidget(videoContainer, {
+                    aspectRatio: '16:9',
+                    autoplay: false,
+                    controls: true
+                });
+                
+                loadVideoBtn.addEventListener('click', () => {
+                    const url = videoUrlInput.value.trim();
+                    if (url) {
+                        videoWidget.loadVideo(videoWidget.getEmbedUrl(url));
+                    }
+                });
+            }
+            
+            // Initialize Nutrition Calculator
+            const nutritionContainer = document.querySelector('#nutrition-calculator-widget .nutrition-calculator');
+            if (nutritionContainer) {
+                new NutritionCalculator(nutritionContainer, {
+                    apiKey: '',
+                    units: 'metric'
+                });
+            }
+            
+            // Initialize Calendar Widget
+            const calendarContainer = document.querySelector('#calendar-widget .calendar-container');
+            if (calendarContainer) {
+                new CalendarWidget(calendarContainer, {
+                    events: [
+                        { date: '2025-01-15', title: 'Team Meeting', time: '10:00 AM' },
+                        { date: '2025-01-20', title: 'Project Deadline', time: '5:00 PM' },
+                        { date: '2025-01-25', title: 'Client Call', time: '2:00 PM' }
+                    ],
+                    holidays: []
+                });
+            }
+            
+            // Initialize Music Player
+            const musicPlayerContainer = document.querySelector('#music-player-widget .music-player');
+            if (musicPlayerContainer) {
+                new MusicPlayer(musicPlayerContainer, {
+                    autoplay: false,
+                    volume: 0.7
+                });
+            }
+        });
     </script>
 </body>
 </html> 
