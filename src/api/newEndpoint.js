@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: News Ticker Core
 // Description: Create news ticker core JavaScript functionality with scrolling animation and customizable settings
 
@@ -36,3 +37,10 @@ console.log('News Ticker Generic implementation');
 // Implemented backend functionality for Video Responsive Container
 console.log('Video Responsive Container implementation');
 >>>>>>> task/1752797361800-video-responsive-container
+=======
+// Task: Nutrition Calculator Generic
+// Description: Create generic embeddable nutrition calculator version for any website
+
+// Implemented backend functionality for Nutrition Calculator Generic
+console.log('Nutrition Calculator Generic implementation');
+>>>>>>> task/1752797361867-nutrition-calculator-generic
