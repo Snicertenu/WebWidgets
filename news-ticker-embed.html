@@ -1,0 +1,21 @@
+<!-- News Ticker Generic - Embed Version -->
+<div class="news-ticker-container">
+  <div class="news-ticker" data-widget="news-ticker">
+    <div class="ticker-content">
+      <span class="ticker-item">Loading news...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// Embed-specific initialization
+(function() {
+  const tickerContainer = document.querySelector('[data-widget="news-ticker"]');
+  if (tickerContainer) {
+    new NewsTicker(tickerContainer, {
+      speed: 50,
+      pauseOnHover: true
+    });
+  }
+})();
+</script>
