@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Test Repository Fix
 // Description: Testing that files are created in the correct repository
 
@@ -60,3 +61,10 @@ console.log('Cross-Browser Testing implementation');
 // Built API functionality for Widget Gallery
 console.log('Widget Gallery implementation');
 >>>>>>> task/1752797362151-widget-gallery
+=======
+// Task: Setup Database Schema
+// Description: Design and implement database structure
+
+// Built API functionality for Setup Database Schema
+console.log('Setup Database Schema implementation');
+>>>>>>> task/1752797954650-setup-database-schema
