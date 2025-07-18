@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Site Version
 // Description: Build site-specific video widget version with custom player styling
 =======
@@ -16,12 +17,17 @@
 // Task: Nutrition Calculator Site Version
 // Description: Build site-specific nutrition calculator version with custom styling
 >>>>>>> task/1752797361859-nutrition-calculator-site-version
+=======
+// Task: Calendar API Integration
+// Description: Integrate with calendar APIs (Google Calendar, Outlook) for event sync
+>>>>>>> task/1752797361892-calendar-api-integration
 
 import React from 'react';
 
 const NewComponent = () => {
   return (
     <div className="newcomponent">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -39,6 +45,10 @@ const NewComponent = () => {
       <h2>Nutrition Calculator Site Version</h2>
       <p>Build site-specific nutrition calculator version with custom styling</p>
 >>>>>>> task/1752797361859-nutrition-calculator-site-version
+=======
+      <h2>Calendar API Integration</h2>
+      <p>Integrate with calendar APIs (Google Calendar, Outlook) for event sync</p>
+>>>>>>> task/1752797361892-calendar-api-integration
     </div>
   );
 };
