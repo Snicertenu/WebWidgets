@@ -9,6 +9,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -84,3 +85,10 @@ console.log('Webflow Integration Guides implementation');
 // Added comprehensive tests for Widget Unit Tests
 console.log('Widget Unit Tests implementation');
 >>>>>>> task/1752797362079-widget-unit-tests
+=======
+// Task: Main Index Update
+// Description: Update main index.html to showcase all new widgets with navigation
+
+// Added comprehensive tests for Main Index Update
+console.log('Main Index Update implementation');
+>>>>>>> task/1752797362139-main-index-update
