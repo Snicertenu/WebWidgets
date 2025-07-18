@@ -1,0 +1,95 @@
+/* Nutrition Calculator Styling */
+/* Create nutrition-calculator-styling.css with responsive form design, validation styling, and results display. Include .calculator-form, .input-group, .results-display classes */
+
+.nutrition-calculator {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-calculator h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.input-group button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.input-group button:hover {
+  background: #0056b3;
+}
+
+.nutrition-info {
+  margin-top: 20px;
+}
+
+.nutrition-info h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+  text-align: center;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.nutrition-item .label {
+  font-weight: 500;
+  color: #555;
+}
+
+.nutrition-item .value {
+  font-weight: 600;
+  color: #333;
+}
+
+.error {
+  color: #dc3545;
+  text-align: center;
+  padding: 10px;
+  background: #f8d7da;
+  border-radius: 4px;
+}
