@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <!-- Task: Video Widget Core -->
 =======
   <!-- Task: Nutrition Calculator Core -->
@@ -33,5 +34,8 @@
 =======
   <!-- Task: Widget Configuration -->
 >>>>>>> task/1752797362175-widget-configuration
+=======
+  <!-- Task: Implement Backend API -->
+>>>>>>> task/1752797950268-implement-backend-api
   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
 </svg>
