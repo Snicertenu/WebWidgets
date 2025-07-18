@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Core
 // Description: Create video widget core with iframe/embed support and responsive container
 
@@ -36,3 +37,10 @@ console.log('Music Player Site Version implementation');
 // Designed UI/UX elements for Widget Examples
 console.log('Widget Examples implementation');
 >>>>>>> task/1752797362054-widget-examples
+=======
+// Task: Troubleshooting Guides
+// Description: Create troubleshooting guides for common widget issues and solutions
+
+// Designed UI/UX elements for Troubleshooting Guides
+console.log('Troubleshooting Guides implementation');
+>>>>>>> task/1752797362068-troubleshooting-guides
