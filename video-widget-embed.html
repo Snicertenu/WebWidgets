@@ -1,0 +1,21 @@
+<!-- Video Widget Generic - Embed Version -->
+<div class="video-widget-container" data-widget="video-widget">
+  <!-- Video will be loaded here -->
+</div>
+
+<script>
+// Embed-specific initialization
+(function() {
+  const videoContainer = document.querySelector('[data-widget="video-widget"]');
+  if (videoContainer) {
+    const videoWidget = new VideoWidget(videoContainer, {
+      aspectRatio: '16:9',
+      autoplay: false,
+      controls: true
+    });
+    
+    // Example: Load a video
+    // videoWidget.loadVideo('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  }
+})();
+</script>
