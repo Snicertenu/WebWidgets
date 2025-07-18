@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Widget Core
 // Description: Create video widget core with iframe/embed support and responsive container
 
@@ -68,3 +69,10 @@ console.log('Performance Optimization implementation');
 // Designed UI/UX elements for Widget Configuration
 console.log('Widget Configuration implementation');
 >>>>>>> task/1752797362175-widget-configuration
+=======
+// Task: Implement Backend API
+// Description: Create RESTful API endpoints for data handling
+
+// Designed UI/UX elements for Implement Backend API
+console.log('Implement Backend API implementation');
+>>>>>>> task/1752797950268-implement-backend-api
