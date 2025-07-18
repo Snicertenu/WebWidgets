@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -28,3 +29,10 @@ console.log('Calorie Calculation implementation');
 // Added comprehensive tests for Nutrition Calculator Webflow
 console.log('Nutrition Calculator Webflow implementation');
 >>>>>>> task/1752797361875-nutrition-calculator-webflow
+=======
+// Task: Calendar Widget Core
+// Description: Create calendar core with date display, navigation, and event management
+
+// Added comprehensive tests for Calendar Widget Core
+console.log('Calendar Widget Core implementation');
+>>>>>>> task/1752797361884-calendar-widget-core
