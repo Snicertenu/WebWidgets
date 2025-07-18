@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: News Ticker Core
 // Description: Create news ticker core JavaScript functionality with scrolling animation and customizable settings
 
@@ -60,3 +61,10 @@ console.log('Calendar Generic implementation');
 // Implemented backend functionality for Music Player Generic
 console.log('Music Player Generic implementation');
 >>>>>>> task/1752797362001-music-player-generic
+=======
+// Task: Embed Guides
+// Description: Write detailed embed guides for each widget type with code examples
+
+// Implemented backend functionality for Embed Guides
+console.log('Embed Guides implementation');
+>>>>>>> task/1752797362032-embed-guides
