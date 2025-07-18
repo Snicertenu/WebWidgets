@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -44,3 +45,10 @@ console.log('Calendar Widget Core implementation');
 // Added comprehensive tests for Holiday Database
 console.log('Holiday Database implementation');
 >>>>>>> task/1752797361900-holiday-database
+=======
+// Task: Calendar Interface
+// Description: Create responsive calendar interface with month/week/day views
+
+// Added comprehensive tests for Calendar Interface
+console.log('Calendar Interface implementation');
+>>>>>>> task/1752797361917-calendar-interface
