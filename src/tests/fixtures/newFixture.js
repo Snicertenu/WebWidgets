@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Task: Video Service Detection
 // Description: Implement service detection for YouTube, Twitch, Facebook with channel selection
 
@@ -76,3 +77,10 @@ console.log('Music Player Webflow implementation');
 // Added comprehensive tests for Webflow Integration Guides
 console.log('Webflow Integration Guides implementation');
 >>>>>>> task/1752797362043-webflow-integration-guides
+=======
+// Task: Widget Unit Tests
+// Description: Add unit tests for all widget functionality and API integrations
+
+// Added comprehensive tests for Widget Unit Tests
+console.log('Widget Unit Tests implementation');
+>>>>>>> task/1752797362079-widget-unit-tests
